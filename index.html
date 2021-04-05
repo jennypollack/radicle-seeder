@@ -1,0 +1,63 @@
+<!doctype html>
+<meta name=viewport content="width=device-width, initial-scale=1">
+<html>
+  <head>
+    <title>Radicle Seeder Unlocked Token Viewer</title>
+  </head>
+  <body>
+    <pre>
+    Your full Seeder Reward amount is <b>5000 RAD tokens.</b>
+    You were airdropped this complete amount but upon receipt, 
+    10% of the Seeder Reward (500 RAD) are deemed <b>fully unlocked.</b>
+    
+    The rest of the Seeder Reward will be progressively unlocked 
+    daily over the course of 1 year.
+    
+    Here is the formula for calculating your unlocked tokens
+    Starting on the first calendar day after receiving the Seeder Reward 
+    (February 20th) until the first anniversary of such event, 
+    the Locked Tokens will become unlocked on a daily rate, 
+    so that the aggregate number of Unlocked Tokens 
+    (i.e., including such Initial Unlocked Tokens) 
+    at any relevant day shall be equal to “N” as determined as follows:
+    
+    <b>N = (0.1 + D/365*0.9) * T</b> 
+    
+    whereas
+    D = Total number of calendar days from receipt of Seeder Reward
+    T = Total number of tokens (5000)
+
+    -----------
+    </pre>
+
+
+
+    <pre id="current">  </pre>
+
+  </body>
+  <script>
+    let oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    let feb20 = new Date('February 20, 2021')
+    let today = new Date()
+    let daysPassed = Math.round(Math.abs((today - feb20) / oneDay));
+
+    console.log(daysPassed)
+
+    let n = (0.1 + daysPassed/365*0.9) * 5000
+    console.log(n)
+
+    // for(d = 0; d < 366; d++){
+    //     let n = (0.1 + d/365*0.9) * 5000
+    // }
+
+    if(n <= 5000) {
+        console.log(`it has been ${daysPassed} days since launch!`)
+        console.log(`as of today, ${n} of your 5000 rad are unlocked`)
+    }
+
+    document.getElementById("current").innerHTML = (`    it has been ${daysPassed} days since launch! 
+    as of today, 
+    ${n} of your 5000 rad are unlocked`)
+
+  </script>
+</html>
